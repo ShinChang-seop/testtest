@@ -5,38 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아두이노 움직임 감지 센서 강의</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        .container { max-width: 800px; margin: auto; }
-        .lecture { border: 1px solid #ddd; padding: 10px; margin: 10px 0; border-radius: 5px; }
-        .lecture h3 { margin: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ff6b6b;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .checkbox-group label {
+            display: block;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff6b6b;
+            color: white;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>아두이노 움직임 감지 센서 강의</h1>
-        <p>아두이노 센서의 원리와 작동법을 배워보세요.</p>
-        <button onclick="showLectures()">강의 보기</button>
+        <div class="navbar">
+            <a href="#home">홈</a>
+            <a href="#lesson">강의</a>
+            <a href="#contact">문의하기</a>
+        </div>
         
-        <div id="lecture-list"></div>
+        <div id="home" class="content">
+            <h1>아두이노 움직임 감지 센서 강의</h1>
+            <p>이 웹사이트에서는 아두이노 움직임 감지 센서의 원리와 작동법을 배울 수 있습니다.</p>
+            <button onclick="navigate('lesson')">강의 보기</button>
+        </div>
+        
+        <div id="lesson" class="content" style="display:none;">
+            <h2>강의 목록</h2>
+            <div class="checkbox-group">
+                <label><input type="checkbox"> 움직임 감지 센서 개요</label>
+                <label><input type="checkbox"> 아두이노와 센서 연결</label>
+                <label><input type="checkbox"> 코드 작성 및 테스트</label>
+            </div>
+            <button onclick="navigate('home')">뒤로가기</button>
+        </div>
+        
+        <div id="contact" class="content" style="display:none;">
+            <h2>문의하기</h2>
+            <p>문의사항이 있으면 아래 링크를 클릭하세요.</p>
+            <a href="mailto:help@arduino.com">이메일 보내기</a>
+            <button onclick="navigate('home')">뒤로가기</button>
+        </div>
     </div>
-
+    
+    <div class="footer">
+        <p>© 2025 아두이노 강의 웹사이트. All rights reserved.</p>
+    </div>
+    
     <script>
-        const lectures = [
-            { title: "아두이노란?", description: "아두이노의 기본 개념과 사용법" },
-            { title: "움직임 감지 센서 소개", description: "PIR 센서와 초음파 센서의 원리" },
-            { title: "센서와 아두이노 연결하기", description: "센서와 아두이노 보드 연결 방법" },
-            { title: "센서 데이터 처리", description: "센서 데이터를 코드로 처리하는 방법" }
-        ];
-
-        function showLectures() {
-            const list = document.getElementById("lecture-list");
-            list.innerHTML = "";
-            lectures.forEach(lecture => {
-                const div = document.createElement("div");
-                div.className = "lecture";
-                div.innerHTML = `<h3>${lecture.title}</h3><p>${lecture.description}</p>`;
-                list.appendChild(div);
-            });
+        function navigate(section) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('lesson').style.display = 'none';
+            document.getElementById('contact').style.display = 'none';
+            document.getElementById(section).style.display = 'block';
         }
     </script>
 </body>
